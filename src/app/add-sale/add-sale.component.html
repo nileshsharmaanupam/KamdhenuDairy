@@ -1,0 +1,75 @@
+<!-- src/app/add-sale/add-sale.component.html -->
+<div class="add-sale-container">
+    <h2>Add Sale</h2>
+    <form [formGroup]="saleForm" (ngSubmit)="onSubmit()">
+
+      <mat-form-field appearance="fill">
+        <mat-label>Customer ID</mat-label>
+        <input matInput formControlName="customerId" type="number" placeholder="Customer ID">
+        <!-- <mat-error *ngIf="saleForm.get('customerId').invalid && saleForm.get('customerId').touched">
+          Customer ID is required. -->
+        <!-- </mat-error> -->
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Customer Name</mat-label>
+        <mat-select formControlName="customerName" placeholder="Select Customer Name">
+          <!-- <mat-option *ngFor="let customer of Customers" [value]="customer.name">
+            {{ <customer class="name"></customer> }}
+          </mat-option> -->
+          @for (customer of customerName; track customer) {
+            <mat-option [value]="customer.name">{{customer.name}}</mat-option>
+          }
+          <!-- <option value="volvo">Volvo</option>
+          <option value="saab">Saab</option>
+          <option value="mercedes">Mercedes</option>
+          <option value="audi">Audi</option> -->
+        </mat-select>
+        
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Product</mat-label>
+        <mat-select formControlName="product" type="string" placeholder="Product">
+          @for (prd of productType; track prd) {
+            <mat-option [value]="prd">{{prd}}</mat-option>
+          }
+        </mat-select>
+        <!-- <mat-error *ngIf="saleForm.get('customerId').invalid && saleForm.get('customerId').touched">
+          Customer ID is required. -->
+        <!-- </mat-error> -->
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Session</mat-label>
+        <mat-select formControlName="session" type="string" placeholder="session">
+          
+            <mat-option >Morning</mat-option>
+            <mat-option >Evening</mat-option>
+          
+        </mat-select>
+        <!-- <mat-error *ngIf="saleForm.get('customerId').invalid && saleForm.get('customerId').touched">
+          Customer ID is required. -->
+        <!-- </mat-error> -->
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Date</mat-label>
+        <input matInput formControlName="saleDate" type="date" placeholder="Date">
+        <!-- <mat-error *ngIf="saleForm.get('date').invalid && saleForm.get('date').touched">
+          Date is required.
+        </mat-error> -->
+      </mat-form-field>
+  
+      <!-- <mat-form-field appearance="fill">
+        <mat-label>Amount</mat-label>
+        <input matInput formControlName="amount" type="number" placeholder="Amount"> -->
+        <!-- <mat-error *ngIf="saleForm.get('amount').invalid && saleForm.get('amount').touched">
+          Amount is required and must be greater than 0.
+        </mat-error> -->
+      <!-- </mat-form-field> -->
+  
+      <button mat-raised-button type="submit" color="primary">Add Sale</button>
+    </form>
+  </div>
+  
