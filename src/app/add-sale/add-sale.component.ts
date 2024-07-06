@@ -1,13 +1,13 @@
-import { Component ,OnInit} from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule} from '@angular/forms';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 
 import { get } from 'http';
 import { cust } from '../CustomerDatasource';
-import {Transaction} from '../ITransaction'
+import { Transaction } from '../ITransaction'
 import { Router } from '@angular/router';
 
 
@@ -15,31 +15,31 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-add-sale',
   standalone: true,
-  imports: [MatFormFieldModule,MatInputModule,MatButtonModule,ReactiveFormsModule,MatSelectModule],
+  imports: [MatFormFieldModule, MatInputModule, MatButtonModule, ReactiveFormsModule, MatSelectModule],
   templateUrl: './add-sale.component.html',
   styleUrl: './add-sale.component.css'
 })
-export class AddSaleComponent implements OnInit{
+export class AddSaleComponent implements OnInit {
   saleForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private router : Router) {
+  constructor(private fb: FormBuilder, private router: Router) {
     this.saleForm = this.fb.group({
       customerId: ['', Validators.required],
-      customerName: ['',Validators.required],
-      saleDate: [new Date().getDate() , Validators.required],
+      customerName: ['', Validators.required],
+      saleDate: [new Date().getDate(), Validators.required],
       quantity: ['', [Validators.required, Validators.min(0)]],
-      session: ['',Validators.required],
-      product: ['',Validators.required]
+      session: ['', Validators.required],
+      product: ['', Validators.required]
     });
   }
 
 
-  customerName  = cust;
-  productType = ['Milk','Ghee','Curd','Paneer'];
+  customerName = cust;
+  productType = ['Milk', 'Ghee', 'Curd', 'Paneer'];
 
 
-  
-  
+
+
   ngOnInit(): void {
   }
 
@@ -61,11 +61,11 @@ export class AddSaleComponent implements OnInit{
     }
   }
 
-  addTransaction(custId: number): void{
-    const trans  = 
-    [
-      {id:10 , product : 'Random' , dateOfPurcahse : new Date('2024-06-07'),session: 'EveningTest', quantity: 200,amount:400}
-    ];
+  addTransaction(custId: number): void {
+    const trans =
+      [
+        { id: 10, product: 'Random', dateOfPurcahse: new Date('2024-06-07'), session: 'EveningTest', quantity: 200, amount: 400 }
+      ];
     cust[custId].transactions.concat(trans);
     console.log(cust[custId]);
     console.log('View Detail: redirecting');

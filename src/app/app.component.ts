@@ -7,14 +7,14 @@ import { CustomerSummaryComponent } from './customer-summary/customer-summary.co
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: 
-  [
-    RouterLink, 
-    RouterLinkActive,
-    RouterOutlet,
-    HeaderComponent,
-    CustomerSummaryComponent,
-  ],
+  imports:
+    [
+      RouterLink,
+      RouterLinkActive,
+      RouterOutlet,
+      HeaderComponent,
+      CustomerSummaryComponent,
+    ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

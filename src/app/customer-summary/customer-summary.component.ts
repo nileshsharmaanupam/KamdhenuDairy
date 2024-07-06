@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 import { Router } from '@angular/router';
 
-import {cust} from './../CustomerDatasource'
-import {Customer} from './../ICustomer'
+import { cust } from './../CustomerDatasource'
+import { Customer } from './../ICustomer'
 
 // export interface Customer {
 //   id: number;
@@ -62,19 +62,19 @@ const ELEMENT_DATA: Customer[] = cust;
   styleUrl: './customer-summary.component.css'
 })
 export class CustomerSummaryComponent {
-  displayedColumns: string[] = 
-  ['id', 'name', 'email','phoneNum','joinDate','lastInvoiceDate','quantityBought','actions'];
+  displayedColumns: string[] =
+    ['id', 'name', 'email', 'phoneNum', 'joinDate', 'lastInvoiceDate', 'quantityBought', 'actions'];
   dataSource = ELEMENT_DATA;
 
-  constructor( private router: Router) {}
+  constructor(private router: Router) { }
 
   editCustomer(customer: Customer): void {
     console.log('Edit customer:', customer);
     // Implement your edit logic here
   }
 
-  viewDetailOfCustomer(customer:Customer): void {
-    console.log('View Detail: ',customer);
+  viewDetailOfCustomer(customer: Customer): void {
+    console.log('View Detail: ', customer);
     this.router.navigate(['/customer', customer.id]);
   }
 
