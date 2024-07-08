@@ -9,6 +9,7 @@ import { get } from 'http';
 import { cust } from '../CustomerDatasource';
 import { Transaction } from '../ITransaction'
 import { Router } from '@angular/router';
+import { TransactionService } from '../transaction.service';
 
 
 
@@ -22,7 +23,7 @@ import { Router } from '@angular/router';
 export class AddSaleComponent implements OnInit {
   saleForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(private fb: FormBuilder, private router: Router, private transactionService: TransactionService) {
     this.saleForm = this.fb.group({
       customerId: ['', Validators.required],
       customerName: ['', Validators.required],
@@ -52,7 +53,7 @@ export class AddSaleComponent implements OnInit {
       const formData = this.saleForm.value;
       // Process the form data, e.g., send it to a service to add the sale
       console.log(formData);
-      this.addTransaction(formData.customerId)
+      this.addTransaction(formData.quantity,formData.product,formData.customerId)
       // Reset the form after submission
       this.saleForm.reset();
     } else {
@@ -62,13 +63,18 @@ export class AddSaleComponent implements OnInit {
     }
   }
 
-  addTransaction(custId: number): void {
-    const trans =
-      [
-        { id: 10, product: 'Random', dateOfPurcahse: new Date('2024-06-07'), session: 'EveningTest', quantity: 200, amount: 400 }
-      ];
-    cust[custId].transactions.concat(trans);
+  addTransaction(quantity: number, product:string , custId: number): void {
+    
+    
     console.log(cust[custId]);
+    this.transactionService.addTransaction(quantity,product,custId).subscribe(
+      response => {
+        console.log('Sale added successfully', response);
+        this.saleForm.reset();
+      },
+      error => {
+        console.error('Error adding Sale', error);
+      });
     console.log('View Detail: redirecting');
     this.router.navigate(['/customer', custId]);
     console.log('routing complete')

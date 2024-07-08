@@ -7,6 +7,10 @@ import { Customer } from './../ICustomer'
 import { Transaction } from './../ITransaction'
 
 import { cust } from './../CustomerDatasource'
+import { TransactionService } from '../transaction.service';
+import { CustomerService } from '../customer.service';
+import { response } from 'express';
+import { error } from 'console';
 
 
 
@@ -23,18 +27,34 @@ const ELEMENT_DATA: Customer[] = cust;
 })
 export class CustomerDetailsComponent implements OnInit {
   customer: Customer | undefined;
+  transaction: Transaction| undefined;
 
   displayedColumns: string[] =
     ['id', 'Product', 'dateOfPurcahse', 'session', 'quantity', 'amount'];
   dataSource = new MatTableDataSource<Transaction>();
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private transactionService: TransactionService ,private customerService: CustomerService) { }
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.customer = ELEMENT_DATA.find(customer => customer.id === id);
+    //this.customer = ELEMENT_DATA.find(customer => customer.id === id);
+    
+    this.customerService.getCustomerById(id).subscribe(
+      value => {
+        this.customer = value;
+      }
+    );
+    
+    this.transactionService.getTransactionByCustomerId(id)
+     .subscribe(
+      
+      value => {
+        this.dataSource.data= value;
+        console.log(value);
+      }
+    )
     if (this.customer) {
-      this.dataSource.data = this.customer.transactions;
+     // this.dataSource.data = this.customer.transactions;
     }
 
   }

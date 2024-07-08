@@ -25,8 +25,8 @@ export class CustomerSummaryComponent {
   displayedColumns: string[] =
     ['id', 'name', 'email', 'phoneNum', 'joinDate', 'lastInvoiceDate', 'quantityBought', 'actions'];
   
-  dataSource = 
-  this.customerService.getCustomer().subscribe(cust => cust as Customer[])
+  dataSource = this.customerService.getCustomer()//.subscribe(cust => cust as Customer[])
+  dataSource1 = ELEMENT_DATA;
 
 
   constructor(private router: Router, private customerService : CustomerService) { }
