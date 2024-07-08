@@ -36,6 +36,7 @@ export class AddSaleComponent implements OnInit {
 
   customerName = cust;
   productType = ['Milk', 'Ghee', 'Curd', 'Paneer'];
+  sessionType = ['Morning', 'Evening'];
 
 
 
@@ -44,9 +45,9 @@ export class AddSaleComponent implements OnInit {
   }
 
   onSubmit(): void {
-    const formData = this.saleForm.value;
-    console.log(formData);
-    this.addTransaction(formData.customerId)
+    // const formData = this.saleForm.value;
+    // console.log(formData);
+    // this.addTransaction(formData.customerId)
     if (this.saleForm.valid) {
       const formData = this.saleForm.value;
       // Process the form data, e.g., send it to a service to add the sale

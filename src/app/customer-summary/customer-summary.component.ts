@@ -5,54 +5,14 @@ import { Router } from '@angular/router';
 import { cust } from './../CustomerDatasource'
 import { Customer } from './../ICustomer'
 
-// export interface Customer {
-//   id: number;
-//   name: string;
-//   email: string;
-//   phoneNum: number;
-//   joinDate : Date;
-//   lastInvoiceDate: Date;
-//   quantityBought: number; 
-// }
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { CustomerService } from '../customer.service';
+
+
 
 const ELEMENT_DATA: Customer[] = cust;
-// [
-//   {
-//     id: 1,
-//     name: 'John Doe',
-//     email: 'john.doe@example.com',
-//     phoneNum: 0,
-//     joinDate : new Date('2024-07-06'),
-//     lastInvoiceDate:new Date('2024-07-06'),
-//     quantityBought:10
-//   },
-//   {
-//     id: 2,
-//     name: 'John Doe',
-//     email: 'john.doe@example.com',
-//     phoneNum: 0,
-//     joinDate : new Date('2024-07-06'),
-//     lastInvoiceDate:new Date('2024-07-06'),
-//     quantityBought:10
-//   },{
-//     id: 3,
-//     name: 'Jane Smith',
-//     email: 'Jane.Smith@example.com',
-//     phoneNum: 0,
-//     joinDate : new Date('2024-07-06'),
-//     lastInvoiceDate:new Date('2024-07-06'),
-//     quantityBought:10
-//   },
-//   {
-//     id: 4,
-//     name: 'John Do3',
-//     email: 'john.do3@example.com',
-//     phoneNum: 0,
-//     joinDate : new Date('202407-06'),
-//     lastInvoiceDate:new Date('2024-07-06'),
-//     quantityBought:10
-//   }
-// ];
+
 
 @Component({
   selector: 'app-customer-summary',
@@ -64,14 +24,19 @@ const ELEMENT_DATA: Customer[] = cust;
 export class CustomerSummaryComponent {
   displayedColumns: string[] =
     ['id', 'name', 'email', 'phoneNum', 'joinDate', 'lastInvoiceDate', 'quantityBought', 'actions'];
-  dataSource = ELEMENT_DATA;
+  
+  dataSource = 
+  this.customerService.getCustomer().subscribe(cust => cust as Customer[])
 
-  constructor(private router: Router) { }
+
+  constructor(private router: Router, private customerService : CustomerService) { }
 
   editCustomer(customer: Customer): void {
     console.log('Edit customer:', customer);
     // Implement your edit logic here
   }
+
+  
 
   viewDetailOfCustomer(customer: Customer): void {
     console.log('View Detail: ', customer);

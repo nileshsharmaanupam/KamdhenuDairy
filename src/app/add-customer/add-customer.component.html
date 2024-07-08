@@ -1,0 +1,32 @@
+<!-- add-customer.component.html -->
+<div class="add-customer-container">
+    <h2>Add Customer</h2>
+    <form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" placeholder="Name">
+        <mat-error *ngIf="customerForm.get('name').invalid && customerForm.get('name').touched">
+          Name is required.
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" type="email" placeholder="Email">
+        <mat-error *ngIf="customerForm.get('email').invalid && customerForm.get('email').touched">
+          Enter a valid email.
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Phone Number</mat-label>
+        <input matInput formControlName="phoneNumber" type="text" placeholder="Phone Number">
+        <mat-error *ngIf="customerForm.get('phoneNumber').invalid && customerForm.get('phoneNumber').touched">
+          Phone Number is required and must be numeric.
+        </mat-error>
+      </mat-form-field>
+  
+      <button mat-raised-button type="submit" color="primary">Add Customer</button>
+    </form>
+  </div>
+  

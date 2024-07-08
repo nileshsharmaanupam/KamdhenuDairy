@@ -44,13 +44,23 @@
       <mat-label>Session</mat-label>
       <mat-select formControlName="session" type="string" placeholder="session">
 
-        <mat-option>Morning</mat-option>
-        <mat-option>Evening</mat-option>
+        @for (ses of sessionType; track ses) {
+          <mat-option [value]="ses">{{ses}}</mat-option>
+          }
 
       </mat-select>
-      <!-- <mat-error *ngIf="saleForm.get('customerId').invalid && saleForm.get('customerId').touched">
-          Customer ID is required. -->
-      <!-- </mat-error> -->
+      
+      <mat-error *ngIf="saleForm.get('session').invalid && saleForm.get('session').touched">
+          Customer ID is required. 
+      </mat-error> 
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Quantity</mat-label>
+      <input matInput formControlName="quantity" type="number" placeholder="quantity">
+      <!-- <mat-error *ngIf="saleForm.get('date').invalid && saleForm.get('date').touched">
+          Date is required.
+        </mat-error> -->
     </mat-form-field>
 
     <mat-form-field appearance="fill">

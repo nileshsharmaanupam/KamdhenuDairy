@@ -18,6 +18,6 @@ export class HeaderComponent {
   onHomeButtonClick(): void {
     console.log(1);
 
-    this.router.navigate(['/addsale']);
+    this.router.navigate(['/homepage']);
   }
 }
