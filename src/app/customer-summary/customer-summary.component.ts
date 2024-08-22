@@ -3,11 +3,11 @@ import { MatTableModule } from '@angular/material/table';
 import { Router } from '@angular/router';
 
 import { cust } from './../CustomerDatasource'
-import { Customer } from './../ICustomer'
+import { Customer } from '../Interface/ICustomer'
 
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { CustomerService } from '../customer.service';
+import { CustomerService } from '../Services/customer.service';
 
 
 

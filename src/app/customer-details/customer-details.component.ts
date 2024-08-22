@@ -3,12 +3,12 @@ import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 
-import { Customer } from './../ICustomer'
-import { Transaction } from './../ITransaction'
+import { Customer } from '../Interface/ICustomer'
+import { Transaction } from '../Interface/ITransaction'
 
 import { cust } from './../CustomerDatasource'
-import { TransactionService } from '../transaction.service';
-import { CustomerService } from '../customer.service';
+import { TransactionService } from '../Services/transaction.service';
+import { CustomerService } from '../Services/customer.service';
 import { response } from 'express';
 import { error } from 'console';
 

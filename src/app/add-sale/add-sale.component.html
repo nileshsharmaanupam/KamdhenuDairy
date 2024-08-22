@@ -11,20 +11,30 @@
       <!-- </mat-error> -->
     </mat-form-field>
 
+    <!-- <mat-form-field appearance="fill">
+      <mat-label>Customer Name</mat-label>
+      <input type="text" placeholder="Select Customer Name" aria-label="Customer Name" matInput
+        [formControl]="customerName" [matAutocomplete]="auto">
+      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+        @for (option of filteredOptions ; track option) {
+        <mat-option [value]="option">{{option}}</mat-option>
+        }
+      </mat-autocomplete> -->
     <mat-form-field appearance="fill">
       <mat-label>Customer Name</mat-label>
-      <mat-select formControlName="customerName" placeholder="Select Customer Name">
-        <!-- <mat-option *ngFor="let customer of Customers" [value]="customer.name">
-            {{ <customer class="name"></customer> }}
-          </mat-option> -->
+
+
+      <!-- <mat-select formControlName="customerName" type="string" placeholder="customerName"> -->
+
+      <input type="text" placeholder="Pick one" aria-label="Number" matInput formControlName="customerName"
+        [matAutocomplete]="auto">
+      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete"
+        (optionSelected)="onSelectCustomer($event.option.value)">
         @for (customer of customerName; track customer) {
-        <mat-option [value]="customer.name">{{customer.name}}</mat-option>
+        <mat-option [value]="customer">{{customer}}</mat-option>
         }
-        <!-- <option value="volvo">Volvo</option>
-          <option value="saab">Saab</option>
-          <option value="mercedes">Mercedes</option>
-          <option value="audi">Audi</option> -->
-      </mat-select>
+      </mat-autocomplete>
+      <!-- </mat-select> -->
 
     </mat-form-field>
 
@@ -45,11 +55,11 @@
       <mat-select formControlName="session" type="string" placeholder="session">
 
         @for (ses of sessionType; track ses) {
-          <mat-option [value]="ses">{{ses}}</mat-option>
-          }
+        <mat-option [value]="ses">{{ses}}</mat-option>
+        }
 
       </mat-select>
-      
+
       <!-- <mat-error *ngIf="saleForm.get('session').invalid && saleForm.get('session').touched">
           Customer ID is required. 
       </mat-error>  -->
@@ -81,4 +91,10 @@
 
     <button mat-raised-button type="submit" color="primary">Add Sale</button>
   </form>
+  <div>
+    <br>
+
+
+    <button mat-raised-button type="submit" color="primary">Bulk Import</button>
+  </div>
 </div>

@@ -1,4 +1,4 @@
-import { Customer } from './ICustomer'
+import { Customer } from './Interface/ICustomer'
 
 export var cust: Customer[] = [
   {
